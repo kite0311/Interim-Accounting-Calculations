@@ -1,0 +1,49 @@
+/* header {
+  text-align: center;
+} */
+
+/* nav */
+ul {
+  display: flex;
+  list-style: none;
+}
+ul li {
+  margin-left: 2em;
+}
+
+/* main content */
+.main {
+  /* width: 400px;
+  margin: auto; */
+  text-align: center;
+}
+
+#add {
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  box-sizing: border-box;
+  background: skyblue;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+#delete {
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  box-sizing: border-box;
+  background: skyblue;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+}
