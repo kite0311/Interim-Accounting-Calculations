@@ -1,24 +1,24 @@
-/* header {
-  text-align: center;
-} */
+<template>
+  <main class="main">
+    <div id="calculate"></div>
+    <button class="add">
+      <strong><h2>+</h2></strong>
+    </button>
+    <button class="delete">
+      <strong><h2>-</h2></strong>
+    </button>
+    <h2 id="summary">合計:</h2>
+  </main>
+</template>
 
-/* nav */
-ul {
-  display: flex;
-  list-style: none;
-}
-ul li {
-  margin-left: 2em;
-}
-
-/* main content */
+<style scoped>
 .main {
   /* width: 400px;
   margin: auto; */
   text-align: center;
 }
 
-#add {
+.add {
   border: none;
   border-radius: 50%;
   display: flex;
@@ -31,7 +31,7 @@ ul li {
   text-align: center;
 }
 
-#delete {
+.delete {
   border: none;
   border-radius: 50%;
   display: flex;
@@ -43,7 +43,4 @@ ul li {
   text-decoration: none;
   text-align: center;
 }
-
-footer {
-  text-align: center;
-}
+</style>
