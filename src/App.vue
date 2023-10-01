@@ -18,7 +18,7 @@ import MainCalcultaion from './components/MainCalculation.vue';
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  width: 370px;
+  width: 950px;
   margin: 0 auto;
   font-family: sans-serif;
 }

@@ -1,10 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 const items = {
-  id: 1,
-  name: 'first',
-  price: 100,
-  count: 10
+  item1: {
+    id: 1,
+    name: 'first',
+    price: 100,
+    count: 10
+  }
 };
 
 const countItem = ref([]);
@@ -21,30 +23,34 @@ const deleteItem = () => {
 </script>
 
 <template>
+  <button class="addContents" @click="addItem">+</button>
+  <button class="deleteContents" @click="deleteItem">-</button>
   <!--以下は後日置換予定-->
   <div id="sec">
-    <ul v-if="show && countItem.length">
-      <li v-for="item of countItem">
+    <ul id="card_contents" v-if="show && countItem.length">
+      <li id="card_list" v-for="item of countItem">
         <span class="fa fa-code"></span>
 
-        <p class="title01">タイトル1</p>
+        <p class="title01">タイトル</p>
         <p>だみー</p>
-        <input type="text" class="price_input" v-model="priceRef" placeholder=" 金額を入力して下さい" />
+        name:<input type="text" class="names" placeholder=" 名前を入力して下さい" style="width: 100%" />
+        <!-- 確定ボタン入力後に発火<input type="number" class="count_items" placeholder=" 数値を入力して下さい" /> -->
+        price:<input type="number" class="price_input" v-model="priceRef" style="width: 65%; height: 32px" />
       </li>
     </ul>
+    <h2 v-else>追加ボタンを押してください</h2>
+    <button class="decision">決定</button>
   </div>
   <!--ここまで-->
-  <button class="addForm" @click="addItem">+</button>
-  <button class="deleteForm" @click="deleteItem">-</button>
   <!-- <h2 id="summary">合計:{{ addForm }}</h2> -->
 
-  <ul v-if="items.count == 10">
+  <ul v-if="items">
     <li v-for="item of items">{{ item }}</li>
   </ul>
 </template>
 
 <style scoped>
-.addForm {
+.addContents {
   border: none;
   border-radius: 50px;
   display: flex;
@@ -57,7 +63,7 @@ const deleteItem = () => {
   text-align: center;
 }
 
-.deleteForm {
+.deleteContents {
   border: none;
   border-radius: 50px;
   display: flex;
@@ -79,7 +85,7 @@ const deleteItem = () => {
 }
 
 #sec ul {
-  margin: 0;
+  margin: 1 auto;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -88,7 +94,7 @@ const deleteItem = () => {
 }
 #sec ul li {
   padding: 40px;
-  width: 320px;
+  width: 100px;
   transition: box-shadow 0.3s;
 }
 #sec ul li:hover {
@@ -119,7 +125,7 @@ const deleteItem = () => {
 #sec ul li .title01 {
   color: #6f6f6f;
   display: inline-block;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 100;
   transition: color 0.3s;
 }
@@ -142,6 +148,14 @@ const deleteItem = () => {
   font-size: 16px;
   line-height: 26px;
   transition: color 0.3s;
+}
+#card_content {
+  display: flex;
+}
+#card_list {
+  background-color: #ececec;
+  border-radius: 8%;
+  margin: 3px;
 }
 /**ここまで */
 </style>
