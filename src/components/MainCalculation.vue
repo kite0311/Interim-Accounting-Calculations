@@ -46,8 +46,8 @@ const generateRandomString = () => {};
   <!--ここまで-->
   <!-- <h2 id="summary">合計:{{ addForm }}</h2> -->
 
-  <ul v-if="items">
-    <li v-for="item of items">{{ item }}</li>
+  <ul v-if="countItem.length">
+    <li v-for="item of items">{{ countItem }}</li>
   </ul>
 </template>
 
