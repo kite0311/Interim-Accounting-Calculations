@@ -13,13 +13,18 @@ const countItem = ref([]);
 const show = ref(false);
 
 const addItem = () => {
+  const id = 'ID:' + Math.random();
+  countItem.value.push({ id: id });
   show.value = true;
-  countItem.value.push(1);
+  console.log(countItem.value);
 };
 
 const deleteItem = () => {
   countItem.value.pop(1);
+  console.log(countItem.value);
 };
+
+const generateRandomString = () => {};
 </script>
 
 <template>
@@ -30,12 +35,9 @@ const deleteItem = () => {
     <ul id="card_contents" v-if="show && countItem.length">
       <li id="card_list" v-for="item of countItem">
         <span class="fa fa-code"></span>
-
-        <p class="title01">タイトル</p>
-        <p>だみー</p>
-        name:<input type="text" class="names" placeholder=" 名前を入力して下さい" style="width: 100%" />
+        <p class="name">name<input type="text" class="name" style="width: 70%" /></p>
         <!-- 確定ボタン入力後に発火<input type="number" class="count_items" placeholder=" 数値を入力して下さい" /> -->
-        price:<input type="number" class="price_input" v-model="priceRef" style="width: 65%; height: 32px" />
+        <p>price<input type="number" class="price_input" v-model="priceRef" /></p>
       </li>
     </ul>
     <h2 v-else>追加ボタンを押してください</h2>
@@ -93,7 +95,7 @@ const deleteItem = () => {
   border: none;
 }
 #sec ul li {
-  padding: 40px;
+  padding: 10px;
   width: 100px;
   transition: box-shadow 0.3s;
 }
@@ -106,11 +108,11 @@ const deleteItem = () => {
 #sec ul li:hover p {
   color: #555;
 }
-#sec ul li:hover .title01 {
+#sec ul li:hover .name {
   color: #63b7e6;
 }
-#sec ul li:hover .title01:after {
-  width: 25px;
+#sec ul li:hover .name:after {
+  width: 100px;
 }
 #sec ul li span {
   font-size: 2.6em;
@@ -122,14 +124,14 @@ const deleteItem = () => {
 #sec ul li span:after {
   position: static;
 }
-#sec ul li .title01 {
+#sec ul li .name {
   color: #6f6f6f;
   display: inline-block;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 100;
-  transition: color 0.3s;
+  transition: color 0.4s;
 }
-#sec ul li .title01:after {
+#sec ul li .name:after {
   content: '';
   position: relative;
   left: 50%;
@@ -139,23 +141,31 @@ const deleteItem = () => {
   width: 40px;
   height: 1px;
   background: #6f6f6f;
-  transition: width 0.3s;
+  transition: width 0.5s;
 }
-#sec ul li p {
+/* #sec ul li p {
   color: #a2a2a2;
   text-align: left;
   text-indent: 1em;
   font-size: 16px;
   line-height: 26px;
   transition: color 0.3s;
-}
+} */
 #card_content {
   display: flex;
 }
 #card_list {
-  background-color: #ececec;
+  background-color: #cbeef0;
   border-radius: 8%;
   margin: 3px;
 }
 /**ここまで */
+
+/**カード内フォームのcss */
+.price_input {
+  width: 65%;
+  height: 32px;
+  font-size: 20px;
+  text-align: center;
+}
 </style>
