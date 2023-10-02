@@ -1,30 +1,39 @@
 <script setup>
 import { ref } from 'vue';
-const items = {
-  item1: {
-    id: 1,
-    name: 'first',
-    price: 100,
-    count: 10
-  }
-};
+import { useCalculate } from '../composables/useCalculate';
+import { useGenerateRandomString } from '../composables/useGenerateRandomString';
 
-const countItem = ref([]);
+const { generateId } = useGenerateRandomString();
+const idList = ref([]);
 const show = ref(false);
+var cardCounter = 1;
+
+const items = {
+  // item1: {
+  //   id: 1,
+  //   name: 'first',
+  //   price: 100,
+  //   count: 10
+};
 
 const addItem = () => {
-  const id = 'ID:' + Math.random();
-  countItem.value.push({ id: id });
+  const id = generateId();
   show.value = true;
-  console.log(countItem.value);
+  items['item' + cardCounter++] = { id: id };
+  localStorage.items = JSON.stringify(items);
+  idList.value.push({ id: id });
 };
 
+//TODO idを受け取るかチェックボックスを使って、後ろから削除だけでなく任意のカードを消せるようにする。
+//TODO 現状、削除ボタンとストレージの削除のタイミングがずれているため調整する。
+//TODO 削除ボタンを最大まで押下するとカウンタが0になるため制御する。
 const deleteItem = () => {
-  countItem.value.pop(1);
-  console.log(countItem.value);
+  idList.value.pop(1);
+  delete items['item' + cardCounter];
+  localStorage.items = JSON.stringify(items);
+  cardCounter--;
+  console.log(items);
 };
-
-const generateRandomString = () => {};
 </script>
 
 <template>
@@ -32,22 +41,24 @@ const generateRandomString = () => {};
   <button class="deleteContents" @click="deleteItem">-</button>
   <!--以下は後日置換予定-->
   <div id="sec">
-    <ul id="card_contents" v-if="show && countItem.length">
-      <li id="card_list" v-for="item of countItem">
+    <ul id="card_contents" v-if="show && cardCounter >= 1">
+      <li id="card_list" v-for="item of idList">
         <span class="fa fa-code"></span>
-        <p class="name">name<input type="text" class="name" style="width: 70%" /></p>
+        <p class="name">name<input type="text" class="name" style="width: 70%" maxlength="10" /></p>
         <!-- 確定ボタン入力後に発火<input type="number" class="count_items" placeholder=" 数値を入力して下さい" /> -->
         <p>price<input type="number" class="price_input" v-model="priceRef" /></p>
       </li>
     </ul>
+    <!--itemsオブジェクトが空になった時にも下記の文言を表示させる-->
+    <h2 v-else-if="!show || !items.length">追加ボタンを押してください</h2>
     <h2 v-else>追加ボタンを押してください</h2>
     <button class="decision">決定</button>
   </div>
   <!--ここまで-->
   <!-- <h2 id="summary">合計:{{ addForm }}</h2> -->
 
-  <ul v-if="countItem.length">
-    <li v-for="item of items">{{ countItem }}</li>
+  <ul v-if="idList.length">
+    <li v-for="value in idList">{{ value }}</li>
   </ul>
 </template>
 
