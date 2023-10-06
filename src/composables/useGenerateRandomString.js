@@ -7,3 +7,5 @@ export const useGenerateRandomString = () => {
   };
   return { generateId };
 };
+
+//TODO IDはdatabaseで保存しておきたい。セキュリティ面でも
