@@ -2,11 +2,11 @@ import { ref } from 'vue';
 
 export const formValidator = (value) => {
   const isValid = ref(false);
-  const isValidValue = (value) => {
-    if (value !== 0 && value <= 12) {
+  const isValidValue = (value, maxlength, minlength) => {
+    if (value !== minlength && value <= maxlength) {
       isValid.value = true;
       return isValid;
-    } else if (value === 0) {
+    } else if (value === minlength) {
       isValid;
     } else {
       isValid;
