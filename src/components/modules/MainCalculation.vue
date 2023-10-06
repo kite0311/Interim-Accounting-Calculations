@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { useGenerateRandomString } from '../../composables/useGenerateRandomString';
 import GenerateTables from './GenerateTables.vue';
-
+import ButtonBase from './ButtonBase.vue';
 const { generateId } = useGenerateRandomString();
 const tableValue = ref(0);
 
@@ -24,12 +24,13 @@ const addTable = (value) => {
   show.value = true;
   for (let i = 1; i <= tableValue.value; i++) {
     const id = generateId();
-
     items['item' + i] = { id: id };
     localStorage.items = JSON.stringify(items);
     idList.value.push({ id: id });
   }
 };
+
+const confirmTable = (value) => {};
 
 //TODO idを受け取るかチェックボックスを使って、後ろから削除だけでなく任意のカードを消せるようにする。
 //TODO 現状、削除ボタンとストレージの削除のタイミングがずれているため調整する。
@@ -46,28 +47,47 @@ const deleteItem = () => {
 <template>
   <GenerateTables @add-table-value="addTable" />
   <p>子コンポーネントから受け取った値: {{ tableValue }}</p>
+  <p>{{ items.item }}</p>
 
-  <div id="sec">
+  <div class="items">
+    <ul v-if="show">
+      <p>品名と価格を入力してください</p>
+      <li v-for="item of idList">
+        <input type="text" class="item name" style="width: 60px" placeholder="品名" />
+        <input type="text" class="item price" style="width: 200px" placeholder="価格" />
+      </li>
+      <div><ButtonBase color="orange" @click="confirmTable">confirm</ButtonBase></div>
+    </ul>
+  </div>
+
+  <!-- <div id="sec">
     <ul id="card_contents" v-if="show">
       <li id="card_list" v-for="item of idList">
         <span class="fa fa-code"></span>
         <p class="name">Name<input type="text" class="name" style="width: 70%" maxlength="10" v-model="nameRef" /></p>
-        <!-- 確定ボタン入力後に発火<input type="number" class="count_items" placeholder=" 数値を入力して下さい" /> -->
         <p>Price<input type="number" class="price_input" v-model="priceRef" /></p>
-        <!-- 一旦使用しない<button class="addContents" @click="addItem">+</button> -->
         <button class="deleteContents" @click="deleteItem">-</button>
       </li>
     </ul>
-    <!--itemsオブジェクトが空になった時にも下記の文言を表示させる-->
-    <h2 v-else></h2>
-  </div>
+  </div> -->
 
-  <ul v-if="idList.length">
+  <!-- <ul v-if="idList.length">
     <li v-for="value in idList">{{ value }}</li>
-  </ul>
+  </ul> -->
 </template>
 
 <style scoped>
+.items {
+  display: flex;
+  text-align: center;
+}
+
+.item {
+  border-radius: 50px 50px;
+  margin: 4px;
+  padding: 4px;
+}
+
 .addContents {
   border: none;
   border-radius: 50px;
