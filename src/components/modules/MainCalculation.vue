@@ -8,8 +8,8 @@ const tableValue = ref(0);
 
 const idList = ref([]);
 const show = ref(false);
-const nameRef = ref([]);
-const priceRef = ref([]);
+const name = ref(['']);
+const price = ref(['']);
 
 const items = {
   // item1: {
@@ -30,7 +30,10 @@ const addTable = (value) => {
   }
 };
 
-const confirmTable = (value) => {};
+const confirmTable = (value) => {
+  const names = name.filter((item) => item.trim() !== '');
+  const prices = price.filter((item) => item.trim() !== '');
+};
 
 //TODO idを受け取るかチェックボックスを使って、後ろから削除だけでなく任意のカードを消せるようにする。
 //TODO 現状、削除ボタンとストレージの削除のタイミングがずれているため調整する。
@@ -47,45 +50,55 @@ const deleteItem = () => {
 <template>
   <GenerateTables @add-table-value="addTable" />
   <p>子コンポーネントから受け取った値: {{ tableValue }}</p>
-  <p>{{ items.item }}</p>
-
   <div class="items">
-    <ul v-if="show">
+    <ul v-if="show" class="itemForm">
       <p>品名と価格を入力してください</p>
-      <li v-for="item of idList">
-        <input type="text" class="item name" style="width: 60px" placeholder="品名" />
-        <input type="text" class="item price" style="width: 200px" placeholder="価格" />
+      <li v-for="(item, index) of idList">
+        <input
+          type="text"
+          class="item name"
+          style="width: 60px"
+          :placeholder="'品名 ' + (index + 1)"
+          v-model="name[index]"
+        />
+        <input
+          type="text"
+          class="item price"
+          style="width: 200px"
+          :placeholder="'価格 ' + (index + 1)"
+          v-model="price[index]"
+        />
       </li>
-      <div><ButtonBase color="orange" @click="confirmTable">confirm</ButtonBase></div>
+      <div class="confirmButton"><ButtonBase color="orange" @click="confirmTable">confirm</ButtonBase></div>
+      <p>{{ name }}: {{ price }}</p>
     </ul>
   </div>
-
-  <!-- <div id="sec">
-    <ul id="card_contents" v-if="show">
-      <li id="card_list" v-for="item of idList">
-        <span class="fa fa-code"></span>
-        <p class="name">Name<input type="text" class="name" style="width: 70%" maxlength="10" v-model="nameRef" /></p>
-        <p>Price<input type="number" class="price_input" v-model="priceRef" /></p>
-        <button class="deleteContents" @click="deleteItem">-</button>
-      </li>
-    </ul>
-  </div> -->
-
-  <!-- <ul v-if="idList.length">
-    <li v-for="value in idList">{{ value }}</li>
-  </ul> -->
 </template>
 
 <style scoped>
 .items {
   display: flex;
   text-align: center;
+  background-color: rgb(206, 206, 206);
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px 2px inset;
 }
 
 .item {
   border-radius: 50px 50px;
   margin: 4px;
   padding: 4px;
+}
+
+.itemForm {
+  list-style: none;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.confirmButton {
+  display: block;
+  margin: 0 50px 0 50px;
 }
 
 .addContents {
@@ -111,14 +124,6 @@ const deleteItem = () => {
   background: red;
   color: white;
   text-decoration: none;
-  text-align: center;
-}
-
-/**カード内フォームのcss */
-.price_input {
-  width: 65%;
-  height: 32px;
-  font-size: 20px;
   text-align: center;
 }
 </style>
