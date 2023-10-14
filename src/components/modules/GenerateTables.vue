@@ -5,11 +5,13 @@ import ButtonBase from './ButtonBase.vue';
 
 const { isValidValue } = formValidator();
 const tableValue = ref(0);
+const inactive = ref(false);
 const emit = defineEmits(['add-table-value']);
 
 const addTable = () => {
   const maxlength = 20;
   const minlength = 0;
+  inactive.value = !inactive.value;
   if (isValidValue(tableValue.value, maxlength, minlength)) {
     emit('add-table-value', tableValue.value);
   } else {
@@ -20,7 +22,7 @@ const addTable = () => {
 </script>
 
 <template>
-  <div class="addTableForm">
+  <div class="addTableForm" v-bind:class="{ inactive: inactive }">
     <p>テーブル数を入力してください</p>
     <input
       type="text"
@@ -30,9 +32,9 @@ const addTable = () => {
       required
       v-model="tableValue"
     />
-  </div>
-  <div class="confirmButton">
-    <ButtonBase color="orange" @click="addTable">confirm</ButtonBase>
+    <div class="confirmButton">
+      <ButtonBase color="orange" @click="addTable">confirm</ButtonBase>
+    </div>
   </div>
 </template>
 
@@ -46,5 +48,11 @@ const addTable = () => {
   font-size: 24px;
   font-weight: 700;
   text-align: center;
+}
+.confirmButton {
+  margin: 20px;
+}
+.inactive {
+  display: none;
 }
 </style>
