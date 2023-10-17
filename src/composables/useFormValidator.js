@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 
-export const formValidator = (value) => {
+export const useFormValidator = (value) => {
   const isValid = ref(false);
   const isValidValue = (value, maxlength, minlength) => {
     if (value !== minlength && value <= maxlength) {

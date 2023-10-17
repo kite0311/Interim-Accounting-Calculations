@@ -1,13 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import { useGenerateRandomString } from '../../composables/useGenerateRandomString';
-import GenerateTables from './GenerateTables.vue';
-import ButtonBase from './ButtonBase.vue';
-const { generateId } = useGenerateRandomString();
-const tableValue = ref(0);
+import TableCreate from './TableCreate.vue';
+import TableConfirmButton from './btn/TableConfirmButton.vue';
 
-const idList = ref([]);
-const show = ref(false);
+const { generateId } = useGenerateRandomString();
 const name = ref(['']);
 const price = ref(['']);
 
@@ -19,36 +16,24 @@ const items = {
   //   count: 10
 };
 
+const tableValue = ref(0);
+const idList = ref([]);
+const show = ref(false);
+
 const addTable = (value) => {
   tableValue.value = value;
   show.value = true;
   for (let i = 1; i <= tableValue.value; i++) {
     const id = generateId();
-    items['item' + i] = { id: id };
-    localStorage.items = JSON.stringify(items);
     idList.value.push({ id: id });
   }
 };
 
-const confirmTable = (value) => {
-  const names = name.filter((item) => item.trim() !== '');
-  const prices = price.filter((item) => item.trim() !== '');
-};
-
-//TODO idを受け取るかチェックボックスを使って、後ろから削除だけでなく任意のカードを消せるようにする。
-//TODO 現状、削除ボタンとストレージの削除のタイミングがずれているため調整する。
-//TODO 削除ボタンを最大まで押下するとカウンタが0になるため制御する。
-const deleteItem = () => {
-  idList.value.pop(1);
-  delete items['item' + cardCounter];
-  localStorage.items = JSON.stringify(items);
-  cardCounter--;
-  console.log(items);
-};
+const setItems = () => {};
 </script>
 
 <template>
-  <GenerateTables @add-table-value="addTable" />
+  <TableCreate @add-table-value="addTable" />
   <p>子コンポーネントから受け取った値: {{ tableValue }}</p>
   <div class="items">
     <ul v-if="show" class="itemForm">
@@ -69,7 +54,9 @@ const deleteItem = () => {
           v-model="price[index]"
         />
       </li>
-      <div class="confirmButton"><ButtonBase color="orange" @click="confirmTable">confirm</ButtonBase></div>
+      <div class="confirmButton">
+        <TableConfirmButton color="orange" @table-confirm-click="confirmTable(2)">confirm</TableConfirmButton>
+      </div>
       <p>{{ name }}: {{ price }}</p>
     </ul>
   </div>

@@ -1,12 +1,12 @@
 <script setup>
 import { ref } from 'vue';
-import { formValidator } from '../../composables/formValidatior';
-import ButtonBase from './ButtonBase.vue';
+import { useFormValidator } from '../../composables/useFormValidator';
+import TableCreateButton from './btn/TableCreateButton.vue';
 
-const { isValidValue } = formValidator();
+const { isValidValue } = useFormValidator();
+const emit = defineEmits(['add-table-value']);
 const tableValue = ref(0);
 const inactive = ref(false);
-const emit = defineEmits(['add-table-value']);
 
 const addTable = () => {
   const maxlength = 20;
@@ -18,22 +18,24 @@ const addTable = () => {
     window.alert(maxlength + '以下の数値を入力してください');
   }
 };
-//TODO フォームの入力制限
 </script>
 
 <template>
   <div class="addTableForm" v-bind:class="{ inactive: inactive }">
-    <p>テーブル数を入力してください</p>
-    <input
-      type="text"
-      class="countTable"
-      style="width: 50px; height: 50px"
-      pattern="^[a-zA-Z0-9]+$"
-      required
-      v-model="tableValue"
-    />
+    <div>
+      <p>テーブル数を入力してください</p>
+      <input
+        type="text"
+        class="countTable"
+        style="width: 50px; height: 50px"
+        pattern="^[a-zA-Z0-9]+$"
+        required
+        v-model="tableValue"
+      />
+      <span class="validateMessage" v-show="!validation"></span>
+    </div>
     <div class="confirmButton">
-      <ButtonBase color="orange" @click="addTable">confirm</ButtonBase>
+      <TableCreateButton @table-create-click="addTable"></TableCreateButton>
     </div>
   </div>
 </template>

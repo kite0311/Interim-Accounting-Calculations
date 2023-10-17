@@ -1,13 +1,15 @@
 <script setup>
-import Hedaer from './components/modules/Header.vue';
-import Footer from './components/modules/Footer.vue';
+import Hedaer from './components/modules/TheHeader.vue';
+import Footer from './components/modules/TheFooter.vue';
 import MainCalcultaion from './components/modules/MainCalculation.vue';
+import Result from './components/modules/Result.vue';
 </script>
 
 <template>
   <div class="wrap">
     <Hedaer />
     <MainCalcultaion />
+    <Result />
     <Footer />
   </div>
 </template>

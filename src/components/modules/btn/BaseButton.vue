@@ -1,9 +1,14 @@
 <script setup>
 const props = defineProps({ color: String });
+const emit = defineEmits(['on-click']);
+
+const onClick = (str) => {
+  emit('on-click', str);
+};
 </script>
 
 <template>
-  <button class="btn" :class="props.color"><slot /></button>
+  <button class="btn" :class="props.color" @click="onClick('click')"><slot /></button>
 </template>
 
 <style scoped>
@@ -31,5 +36,10 @@ const props = defineProps({ color: String });
 .blue {
   background-color: #5392f0;
   box-shadow: 0 5px 0 #3880ecd8;
+}
+
+.red {
+  background-color: #ca5b5b;
+  box-shadow: 0 5px 0 #ca5b5ba4;
 }
 </style>
