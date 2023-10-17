@@ -1,8 +1,15 @@
 <script setup>
-import BaseButton from './BaseButton.vue';
+import BaseCounterButton from './BaseCounterButton.vue';
 const emit = defineEmits(['increment-click']);
 </script>
 
 <template>
-  <BaseButton color="red" @on-click="emit('increment-click')">+</BaseButton>
+  <BaseCounterButton counter="increment" @on-click="emit('increment-click')">+</BaseCounterButton>
 </template>
+
+<style scoped>
+.increment {
+  background-color: #ca5b5b;
+  box-shadow: 0 2px 0 #7a3737e0;
+}
+</style>
