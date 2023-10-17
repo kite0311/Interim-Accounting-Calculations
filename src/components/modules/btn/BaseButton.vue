@@ -18,7 +18,6 @@ const onClick = (str) => {
 }
 .btn {
   text-transform: uppercase;
-  text-decoration: dotted;
   margin: 30px;
   color: white;
   width: 130px;
