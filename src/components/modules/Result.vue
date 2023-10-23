@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import IncrementButton from './btn/CounterIncrementButton.vue';
-import DecrementButton from './btn/CounterDecrementButton.vue';
+import IncrementButton from './atoms/btn/counter/CounterIncrementButton.vue';
+import DecrementButton from './atoms/btn/counter/CounterDecrementButton.vue';
 import { useCounter } from '../../composables/useCounter';
 
 const { increment, decrement } = useCounter();
@@ -40,17 +40,17 @@ const setResult = () => {
   <div class="items">
     <ul class="itemForm">
       <li v-for="(item, index) in items" :key="index">
-        <div class="content1">
+        <div class="content">
           <span class="item name">{{ item.name }}</span>
           <span class="item price">{{ item.price }}</span>
-          <IncrementButton color="red" @increment-click="incrementCounter(item)"></IncrementButton>
+          <IncrementButton @increment-click="incrementCounter(item)"></IncrementButton>
           <span class="total"> {{ item.total }} </span>
-          <DecrementButton color="blue" @decrement-click="decrementCounter(item)"></DecrementButton>
+          <DecrementButton @decrement-click="decrementCounter(item)"></DecrementButton>
         </div>
       </li>
     </ul>
   </div>
-  <h1>合計：{{ result }}円</h1>
+  <h1>SUM：{{ result }}</h1>
 </template>
 
 <style scoped>
@@ -74,7 +74,7 @@ const setResult = () => {
   text-align: center;
 }
 
-.content1 {
+.content {
   background-color: aquamarine;
   border: 5px solid skyblue;
   margin: 20px 0 20px 0;

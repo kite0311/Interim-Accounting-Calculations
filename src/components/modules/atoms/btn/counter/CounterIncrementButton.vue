@@ -1,5 +1,5 @@
 <script setup>
-import BaseCounterButton from './BaseCounterButton.vue';
+import BaseCounterButton from '../BaseCounterButton.vue';
 const emit = defineEmits(['increment-click']);
 </script>
 
