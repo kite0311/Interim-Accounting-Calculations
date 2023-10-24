@@ -1,7 +1,6 @@
 <template>
   <footer class="footer">
-    <address>問い合わせ<a href="/"></a></address>
-    <p><small>&copy; copyright 2023 ooo xxx</small></p>
+    <p><small>&copy; copyright 2023 kite0311</small></p>
   </footer>
 </template>
 
