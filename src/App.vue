@@ -1,13 +1,14 @@
 <script setup>
 import Hedaer from './components/modules/TheHeader.vue';
 import Footer from './components/modules/TheFooter.vue';
-import MainCalcultaion from './components/modules/MainCalculation.vue';
+import TableInput from './components/modules/TableInput.vue';
+import CountNumber from './components/modules/CountNumber.vue';
 </script>
 
 <template>
   <div class="wrap">
     <Hedaer />
-    <MainCalcultaion />
+    <TableInput></TableInput>
     <Footer />
   </div>
 </template>

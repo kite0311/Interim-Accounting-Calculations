@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({ counter: String });
+const props = defineProps({ numericCounter: String });
 const emit = defineEmits(['on-click']);
 
 const onClick = (str) => {
@@ -8,7 +8,7 @@ const onClick = (str) => {
 </script>
 
 <template>
-  <button class="btn" :class="props.counter" @click="onClick('click')"><slot /></button>
+  <button class="btn" :class="props.numericCounter" @click="onClick('click')"><slot /></button>
 </template>
 
 <style scoped>

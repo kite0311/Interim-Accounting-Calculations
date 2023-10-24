@@ -4,7 +4,7 @@ const emit = defineEmits(['decrement-click']);
 </script>
 
 <template>
-  <BaseCounterButton counter="decrement" @on-click="emit('decrement-click')">-</BaseCounterButton>
+  <BaseCounterButton numeric-counter="decrement" @on-click="emit('decrement-click')">-</BaseCounterButton>
 </template>
 
 <style scoped>
