@@ -2,7 +2,6 @@
 import Hedaer from './components/modules/TheHeader.vue';
 import Footer from './components/modules/TheFooter.vue';
 import TableInput from './components/modules/TableInput.vue';
-import CountNumber from './components/modules/CountNumber.vue';
 </script>
 
 <template>
