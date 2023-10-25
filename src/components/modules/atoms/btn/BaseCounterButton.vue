@@ -20,8 +20,9 @@ const onClick = (str) => {
   margin: 2px;
   color: white;
   width: 36px;
-  height: 36px;
-  border-radius: 18px;
+  height: 40px;
+  border-radius: 20px;
   border: none;
+  flex: 1;
 }
 </style>

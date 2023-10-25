@@ -1,13 +1,13 @@
 <script setup>
 import Hedaer from './components/modules/TheHeader.vue';
 import Footer from './components/modules/TheFooter.vue';
-import TableInput from './components/modules/TableInput.vue';
+import MainCalculate from './components/modules/MainCalculate.vue';
 </script>
 
 <template>
   <div class="wrap">
     <Hedaer />
-    <TableInput></TableInput>
+    <MainCalculate></MainCalculate>
     <Footer />
   </div>
 </template>
@@ -18,7 +18,7 @@ import TableInput from './components/modules/TableInput.vue';
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  width: 950px;
+  width: 350px;
   margin: 0 auto;
   font-family: sans-serif;
 }
