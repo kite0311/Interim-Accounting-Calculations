@@ -1,10 +1,10 @@
 <script setup>
 import BaseCounterButton from '../BaseCounterButton.vue';
-const emit = defineEmits(['decrement-click']);
+const emit = defineEmits(['on-decrement-click']);
 </script>
 
 <template>
-  <BaseCounterButton value-counter="decrement" @on-click="emit('decrement-click')">-</BaseCounterButton>
+  <BaseCounterButton value-counter="decrement" @on-click-button="emit('on-decrement-click')">-</BaseCounterButton>
 </template>
 
 <style scoped>

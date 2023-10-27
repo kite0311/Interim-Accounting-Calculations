@@ -1,14 +1,14 @@
 <script setup>
 const props = defineProps({ valueCounter: String });
-const emit = defineEmits(['on-click']);
+const emit = defineEmits(['on-click-button']);
 
-const onClick = (str) => {
-  emit('on-click', str);
+const onClick = (event) => {
+  emit('on-click-button', event.target);
 };
 </script>
 
 <template>
-  <button class="btn" :class="props.valueCounter" @click="onClick('click')"><slot /></button>
+  <button class="btn" :class="props.valueCounter" @click="onClick"><slot /></button>
 </template>
 
 <style scoped>
