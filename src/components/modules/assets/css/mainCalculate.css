@@ -34,9 +34,15 @@
   justify-content: center;
 }
 
-.total-content {
+.counter-value {
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: large;
+  width: 30px;
+  text-align: center;
+}
+
+.counter-button {
+  display: flex;
 }
